@@ -29,11 +29,11 @@ By deault, Rendr sets you up to use their [RestAdapter](https://github.com/rendr
 
 You will only need to do this if the default provided RestAdapter doesn't do what you need.
 
-To get started create a new folder in your project root called `server/`. We keep things like the DataAdapter ourside of the `app/` directory because they are server-side only, and should never get send to the Client.
+To get started create a new folder in your project root called `server/`. We keep things like the DataAdapter outside of the `app/` directory because they are server-side only and should never get sent to the Client.
 
-Next create our `data_adapter.js` in a new folder called `libs/`.
+Next create `data_adapter.js` in a new folder called `libs/`.
 
-Override the __request__ method
+Overriding the __request__ method
 
 ```javascript
 MyCustomAdapter.prototype.request = function(req, api, options, callback) {
@@ -44,6 +44,10 @@ MyCustomAdapter.prototype.request = function(req, api, options, callback) {
   // When you're done, send it back to Rendr
   callback(err, response, body);
 
+  // Note: For a simple test, try sending back
+  // callback(null, { statusCode: 200 }, { hello: 'world' });
 
 };
 ```
+
+That's technically all you have to do to build a custom data layer into your app.
